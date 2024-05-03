@@ -1,9 +1,11 @@
 describe('template spec', () => {
-  it('passes', () => {
+  beforeEach(() => {
     cy.visit('https://aspiritech.org')
     cy.title().should('eq', 'Aspiritech – Build it. Break it. Our team tests it. Software QA & Data Services')
     cy.get('.elementor-element-a0fbbb9 > .elementor-widget-container > .elementor-heading-title')
     .contains('Support Our Neurodiverse Team').should('be.visible')
+  })
+  it('passes', () => {   
     cy.get('.elementor-element-b8ce37c > .elementor-widget-container > p').should('be.visible')
     cy.get('.elementor-element-6dab2e9 > .elementor-widget-container > .elementor-heading-title').contains('Quality Assurance, Accessibility, and Data Services').should('be.visible')
     cy.get('em').contains('Excellence powered by a neurodivergent team')
@@ -34,7 +36,7 @@ describe('template spec', () => {
     cy.get('.elementor-widget-container > ul').contains('ul', 'Audio Testing').should('be.visible')
     cy.get('.elementor-widget-container > ul > :nth-child(1) > a').click()
     cy.get('.elementor-element-68c0fc70 > .elementor-widget-container > .elementor-heading-title').contains('Audio Testing: Speaker, Headphone & Connectivity Testing').should('be.visible')
-    cy.url(). should('include', 'audio-testing')
+    cy.url().should('include', 'audio-testing')
     cy.get('#aspiritech-logo > .elementor-widget-container > a > .attachment-large').click()
     cy.get('.elementor-widget-container > ul').contains('ul', 'Accessibility Testing & Remediation').should('be.visible')
     cy.get('.elementor-widget-container > ul').contains('ul', 'Software Quality Assurance').should('be.visible')
@@ -43,6 +45,20 @@ describe('template spec', () => {
     cy.get('.elementor-widget-container > ul').contains('ul', 'Annotation Projects').should('be.visible')
     cy.get('.elementor-widget-container > ul').contains('ul', 'Staff Augmentation').should('be.visible')
     cy.get('.elementor-widget-container > ul').contains('ul', 'Managed Services').should('be.visible')
-
+    cy.get('.elementor-element-0008acc > .elementor-widget-container > .elementor-heading-title').contains('Our Expertise').should('be.visible')
+    cy.get('.elementor-element-71c39bd > .elementor-widget-container > .elementor-button-wrapper > .elementor-button').contains('Services').click()
+    cy.get('.elementor-element-1068126 > .elementor-widget-container > .elementor-heading-title').contains('Services').should('be.visible')
+    cy.url().should('include', 'services')
+    cy.get('#aspiritech-logo > .elementor-widget-container > a > .attachment-large').click()
+    cy.get('.elementor-element-27f727a > .elementor-widget-container > .elementor-heading-title').contains('Our Team').should('be.visible')
+    cy.get('.elementor-element-0af7943 > .elementor-widget-container > .elementor-button-wrapper > .elementor-button').contains('About Aspiritech').click()
+    cy.get('.elementor-element-78885b1 > .elementor-widget-container > .elementor-heading-title').contains('About Us').should('be.visible')
+    cy.url().should('include', 'about-us')
+    cy.get('#aspiritech-logo > .elementor-widget-container > a > .attachment-large').click()
+    cy.get('.elementor-element-9eb1ffa > .elementor-widget-container > .elementor-heading-title').contains('Our Philosophy').should('be.visible')
+    cy.get('.elementor-element-c15c9a7 > .elementor-widget-container > .elementor-button-wrapper > .elementor-button').contains('Our story').click()
+    cy.get('.elementor-element-af53a48 > .elementor-widget-container > .elementor-heading-title').contains('Our Story').should('be.visible')
+    cy.url().should('include', 'our-story')
+    cy.get('#aspiritech-logo > .elementor-widget-container > a > .attachment-large').click()
   })
 })
