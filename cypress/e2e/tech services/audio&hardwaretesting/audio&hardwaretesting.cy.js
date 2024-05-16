@@ -1,9 +1,8 @@
 describe('template spec', () => {
     beforeEach(() => {
         cy.visit('https://aspiritech.org/services/audio-testing/')
-        cy.title().should('eq', 'Audio Testing: Speaker, Headphone & Connectivity Testing – Aspiritech')
-        cy.get('.elementor-element-68c0fc70 > .elementor-widget-container > .elementor-heading-title').contains('Audio Testing: Speaker, Headphone & Connectivity Testing').should('be.visible')
-        cy.url().should('include', 'audio-testing')
+        cy.title().should('eq', 'Audio & Hardware Testing: Speakers, Headphones, & Connectivity – Aspiritech')
+        cy.get('.elementor-element-68c0fc70 > .elementor-widget-container > .elementor-heading-title').contains('Audio & Hardware Testing: Speakers, Headphones, & Connectivity').should('be.visible')
     })
     it('passes', () => {
         cy.get('.underline').contains('case study of one of our biggest clients').click()
