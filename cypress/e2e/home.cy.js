@@ -38,6 +38,24 @@ describe('template spec', () => {
     cy.get('.elementor-element-68c0fc70 > .elementor-widget-container > .elementor-heading-title').contains('Audio & Hardware Testing: Speakers, Headphones, & Connectivity').should('be.visible')
     cy.url().should('include', 'audio-testing')
     cy.get('#aspiritech-logo > .elementor-widget-container > a > .attachment-large').click()
+    //check for the column div
+    cy.get('div[data-id="bfa597f"]').should('be.visible')
+    //check for the video widget div
+    cy.get('.elementor-element-1e614d4').should('be.visible')
+    //check for the video iframe
+    cy.get('.elementor-element-1e614d4 .elementor-video-iframe').should('be.visible').and('have.attr', 'data-src', 
+    'https://www.youtube.com/embed/kCgARx7JYdY?feature=oembed&color&autopause=0&loop=0&muted=0&title=1&portrait=1&byline=1').as('iframeBody')
+    //load the page and wait for the iframe to load
+    //cy.frameLoaded('.elementor-element-1e614d4 .elementor-video-iframe')
+    //cy.iframe().find('body').as('iframeBody')
+    //play the video
+    cy.get('@iframeBody').find('.elementor-element-1e614d4 .elementor-video-iframe').then(($video) => {
+      $video[0].play()
+    })
+    cy.wait(10000)
+    cy.get('@iframeBody').find('video').then(($video) => {
+      $video[0].pause()
+    })
     //Getting first 3 article posts on section News & Resources
     cy.get('.elementor-element-48e1f39').then(($article) => {
       cy.wrap($article[0]).should('contain', 'Help Us Build a Virtual Cookbook')      
