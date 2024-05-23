@@ -30,17 +30,16 @@ describe('template spec', () => {
         cy.go('back')
         cy.get('.elementor-element-6c76d42 > .elementor-widget-container > p').contains('Download Capabilities Statement').should('be.visible')
         cy.request('https://aspiritech.org/wp-content/uploads/2024/02/Aspiritech-Capabilities-Overview-1.pdf')
-        .then((response) => {
-            expect(response.headers['content-type']).to.include('application/pdf')
-          // Handle the response if needed
-          // For example, you can check the status code or perform assertions
-        })
-        cy.get('.elementor-element-69f1d3d > .elementor-widget-container > .elementor-button-wrapper > .elementor-button > .elementor-button-content-wrapper > .elementor-button-text').contains('Download now!')
-        .click({force: true, target: 'https://aspiritech.org/wp-content/uploads/2024/02/Aspiritech-Capabilities-Overview-1.pdf'})
+            .then((response) => {
+                expect(response.headers['content-type']).to.include('application/pdf')
+                // Handle the response if needed
+                // For example, you can check the status code or perform assertions
+            })
+        //cy.get('.elementor-element-69f1d3d > .elementor-widget-container > .elementor-button-wrapper > .elementor-button > .elementor-button-content-wrapper > .elementor-button-text').contains('Download now!')
+        //.invoke("attr", "target", "_self").click()
       
-        //cy.get('.elementor-element-69f1d3d > .elementor-widget-container > .elementor-button-wrapper > .elementor-button')
-        //cy.get('.elementor-element-b8c4651 > .elementor-widget-container > h2').should('be.visible')
-        //cy.get(':nth-child(1) > a > .elementor-icon-list-text')
-        //cy.get(':nth-child(2) > a > .elementor-icon-list-text')
+        cy.get('.elementor-element-b8c4651 > .elementor-widget-container > h2').should('be.visible')
+        cy.get(':nth-child(1) > a > .elementor-icon-list-text').contains('939 Chicago Ave, Evanston, IL 60202 USA').should('be.visible')
+        cy.get(':nth-child(2) > a > .elementor-icon-list-text').contains('312-945-TEST (8378)').should('be.visible')
         })
     })
