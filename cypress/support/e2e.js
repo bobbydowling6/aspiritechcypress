@@ -13,6 +13,8 @@
 // https://on.cypress.io/configuration
 // ***********************************************************
 import 'cypress-axe'
+import 'cypress-plugin-steps'
+import 'cypress-iframe'
 // Import commands.js using ES2015 syntax:
 import './commands'
 
