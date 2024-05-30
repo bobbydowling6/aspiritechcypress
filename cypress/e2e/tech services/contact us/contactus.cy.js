@@ -37,7 +37,8 @@ describe('template spec', () => {
                 // For example, you can check the status code or perform assertions
             })
         cy.get('.elementor-element-69f1d3d > .elementor-widget-container > .elementor-button-wrapper > .elementor-button').click()
-        cy.wait(3000)
+        cy.title('eq', 'Aspiritech Capabilities Overview')
+        cy.url().should('include', 'Aspiritech-Capabilities-Overview-1.pdf')
         cy.go('back')
         cy.section('Contact Info')
         cy.get('.elementor-element-b8c4651 > .elementor-widget-container > h2').should('be.visible')
@@ -46,6 +47,7 @@ describe('template spec', () => {
         cy.get(':nth-child(2) > a > .elementor-icon-list-text').contains('312-945-TEST (8378)').should('be.visible')
         cy.section('Social Media Icons')
         cy.get('.elementor-element-4ab7852 > .elementor-widget-container > .elementor-icon-wrapper').click()
+        cy.title().should('eq', 'Aspiritech | LinkedIn')
         cy.url().should('include', 'aspiritech')
         cy.go('back')
         //cy.get('.elementor-element-d9284dc > .elementor-widget-container > .elementor-icon-wrapper').click()
