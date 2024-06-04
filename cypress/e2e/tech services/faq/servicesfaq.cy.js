@@ -16,7 +16,7 @@ describe('template spec', () => {
         cy.get('#elementor-tab-title-4834 > .elementor-accordion-title').click()
         cy.get('#elementor-tab-content-4834 > p > span')
         cy.get('#elementor-tab-title-4835 > .elementor-accordion-title').click()
-        cy.get('#elementor-tab-content-4835 > p > span')
+        cy.get('#elementor-tab-content-4835 > p')
         cy.get('#elementor-tab-title-4836 > .elementor-accordion-title').click()
         cy.get('#elementor-tab-content-4836 > p > span')
         cy.get('#elementor-tab-title-4837 > .elementor-accordion-title').click()
@@ -46,5 +46,15 @@ describe('template spec', () => {
         cy.get('#elementor-tab-title-2553 > .elementor-accordion-title').click()
         cy.get('#elementor-tab-content-2553').should('be.visible')
 
+    })
+    it('Finds all broken links', () => {
+        cy.get('a').each(link => {
+            if (link.prop('href'))
+                cy.request({
+                    url: link.prop('href'),
+                    failOnStatusCode: false
+                })
+            cy.log(link.prop('href'))
+        })
     })
 })

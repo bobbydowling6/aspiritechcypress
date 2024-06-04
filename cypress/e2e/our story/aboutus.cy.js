@@ -59,5 +59,14 @@ describe('template spec', () => {
         cy.url().should('include', 'leadership')
         cy.go('back')    
         })
-        
+        it('Finds all broken links', () => {
+            cy.get('a').each(link => {
+                if (link.prop('href'))
+                    cy.request({
+                        url: link.prop('href'),
+                        failOnStatusCode: false
+                    })
+                cy.log(link.prop('href'))
+            })
+        })
     })
