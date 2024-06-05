@@ -6,6 +6,23 @@ describe('Body', () => {
       .contains('Support Our Neurodiverse Team').should('be.visible')
     })
     it('should click through each link in the body', () => {
+        cy.section('Universal Search Bar')
+        cy.get('#elementor-search-form-8147f49').type('Bose{enter}')
+        cy.get('.elementor-element-450440ca > .elementor-widget-container > .elementor-heading-title').contains('Search Results for: Bose')
+        cy.get('.elementor-element-b24796 > .elementor-widget-container > .elementor-heading-title').contains('Recent Posts').should('be.visible')
+        cy.title().should('eq', 'Search Results for “Bose” – Aspiritech')
+        cy.url().should('include', 'Bose')
+        cy.get('#elementor-search-form-8147f49').clear().type('Contact{enter}')
+        cy.get('.elementor-element-450440ca > .elementor-widget-container > .elementor-heading-title').contains('Search Results for: Contact')
+        cy.get('.elementor-element-b24796 > .elementor-widget-container > .elementor-heading-title').contains('Recent Posts').should('be.visible')
+        cy.title().should('eq', 'Search Results for “Contact” – Aspiritech')
+        cy.url().should('include', 'Contact')
+        cy.get('#elementor-search-form-8147f49').clear().type('Donation{enter}')
+        cy.get('.elementor-element-450440ca > .elementor-widget-container > .elementor-heading-title').contains('Search Results for: Donation')
+        cy.get('.elementor-element-b24796 > .elementor-widget-container > .elementor-heading-title').contains('Recent Posts').should('be.visible')
+        cy.title().should('eq', 'Search Results for “Donation” – Aspiritech')
+        cy.url().should('include', 'Donation')
+
         cy.section('Our Clients')
         cy.get('.elementor-element-56ca18f4 > .elementor-widget-container > .elementor-heading-title > a').click()
         cy.get('.elementor-element-04c4dba > .elementor-widget-container > .elementor-heading-title').contains('Case Studies').should('be.visible')
@@ -35,6 +52,7 @@ describe('Body', () => {
         cy.get('.elementor-element-6a197173 > .elementor-widget-wrap').click()
         cy.title().should('eq', 'HSRI Case Study – Aspiritech')
         cy.url().should('include', 'hsri-case-study')
+        
         cy.section('Our Extertise')
         cy.get('.elementor-element-68b6f824 > .elementor-widget-wrap').contains('Accessibility').click()
         cy.get('.elementor-element-4fb348f1 > .elementor-widget-container > .elementor-heading-title').contains('Accessibility Testing: Design, UX, Usability, & WCAG Conformance').should('be.visible')
@@ -52,6 +70,7 @@ describe('Body', () => {
         cy.get('.elementor-element-63b8939c > .elementor-widget-container > .elementor-heading-title').contains('Data Services: Data Annotation, Data Labeling, and Data Validation.').should('be.visible')
         cy.title().should('eq', 'Data Services: Data Annotation, Data Labeling, and Data Validation. – Aspiritech')
         cy.url().should('include', 'data-services')
+        
         cy.section('Clients')
         cy.step('Click all links for Clients')
         cy.get('.elementor-element-5f13155 > .elementor-widget-container').should('be.visible')
@@ -84,6 +103,7 @@ describe('Body', () => {
         cy.get('#menu-2-7d64b0b > .menu-item-5124 > .elementor-item').contains('Support Our Mission').click({force: true})
         cy.title().should('eq', 'Support Our Mission – Aspiritech')
         cy.url().should('include', 'support-our-mission')
+        
         cy.section('Resources')
         cy.step('Click all links for Resources')
         cy.get('.elementor-element-542c894 > .elementor-widget-container').should('be.visible')
@@ -100,6 +120,7 @@ describe('Body', () => {
         cy.get('#menu-2-542c894 > .menu-item-6405 > .elementor-item').contains('Stepping Up & Out').click({force: true})
         cy.title().should('eq', 'About the Stepping Up & Out (SUO) Program – Aspiritech')
         cy.url().should('include', 'about-the-stepping-up-out-suo-program')
+        
         cy.section('Buttons')
         cy.step('Click Buttons')
         cy.get('#work-with-us').contains('Hire Aspiritech').click()
