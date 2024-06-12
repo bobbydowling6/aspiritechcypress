@@ -3,8 +3,7 @@ describe('Navigation Menu Test', () => {
   beforeEach(() => {
     cy.visit('https://aspiritech.org')
     cy.title().should('eq', 'Aspiritech – Build it. Break it. Our team tests it. Software QA & Data Services')
-    cy.get('.elementor-element-a0fbbb9 > .elementor-widget-container > .elementor-heading-title')
-    .contains('Support Our Neurodiverse Team').should('be.visible')
+    cy.get('h3').contains('Support Our Neurodiverse Team').should('be.visible')
   })
   it('should click through the menu items', () => {
     cy.section('Services Section')
@@ -55,7 +54,6 @@ describe('Navigation Menu Test', () => {
     cy.get('.elementor-nav-menu').contains('Support Our Mission').click({force: true});
     cy.url().should('eq', 'https://aspiritech.org/support-our-mission/')
     cy.title().should('eq', 'Support Our Mission – Aspiritech')
-    cy.get('#menu-2-c76ed9f > .menu-item-12141 > .elementor-item')
 
     cy.section('News & Resources Section')
     cy.get('.elementor-nav-menu').contains('News & Resources').click({force: true});
@@ -84,12 +82,13 @@ describe('Navigation Menu Test', () => {
     cy.url().should('eq', 'https://aspiritech.org/aspiritech-academy/');
     cy.title().should('eq', 'Aspiritech Academy – Aspiritech')
     cy.go('back')
-    cy.get('.elementor-element-6e175c6a > .elementor-widget-container > .elementor-button-wrapper > .elementor-button').contains('Donate').click()
-    cy.get('.elementor-element-e928d8d > .elementor-widget-container > .elementor-heading-title').contains('Support Our Mission').should('be.visible')
+    cy.get('a').contains('Donate').click()
+    cy.get('h1').contains('Support Our Mission').should('be.visible')
     cy.title().should('eq', 'Support Our Mission – Aspiritech')
     cy.url().should('eq', 'https://aspiritech.org/support-our-mission/')
     cy.go('back')
-    cy.get('.elementor-element-1fa4256 > .elementor-widget-container > .elementor-button-wrapper > .elementor-button').contains('Contact Us').click()
+    cy.get('a').contains('Contact Us').click({force: true})
+    cy.get('h2').contains('We’d Love to Hear From You').should('be.visible')
     cy.title().should('eq', 'Contact Us – Aspiritech')
     cy.url().should('eq', 'https://aspiritech.org/contact-us/')
     cy.go('back')
