@@ -3,12 +3,12 @@ describe('template spec', () => {
     beforeEach(() => {
         cy.visit('https://aspiritech.org/services/quality-assurance/')
         cy.title().should('eq', 'Software Quality Assurance – Aspiritech')
-        cy.get('.elementor-element-3f7eeaa > .elementor-widget-container > .elementor-heading-title').contains('Software Quality Assurance').should('be.visible')
+        cy.get('h1').contains('Software Quality Assurance').should('be.visible')
         cy.url().should('include', 'quality-assurance')
     })
     it('passes', () => {
-        cy.get('.post-3353 > .elementor-post__card > .elementor-post__text > .elementor-post__title').contains('Bose Case Study').click()
-        cy.get('.elementor-element-fce111c > .elementor-widget-container > .elementor-heading-title').contains('Bose Hardware QA & Product Excellence Case Study').should('be.visible')
+        cy.get('h3.elementor-post__title').contains('Bose Case Study').click()
+        cy.get('h1').contains('Bose Hardware QA & Product Excellence Case Study').should('be.visible')
         cy.url().should('include', 'bose-case-study')
         cy.get('#hs-form-iframe-0')
         cy.intercept('//js.hsforms.net/forms/embeded/v2.js', 'fixture:hsforms.json')
@@ -34,5 +34,15 @@ describe('template spec', () => {
         // cy.get('#label-lastname-5ecc7705-fc84-4d9b-a2b0-8cca9376ba98').type(testData.lastname)
         // cy.get('#company-5ecc7705-fc84-4d9b-a2b0-8cca9376ba98').type(testData.companyname)
         // cy.get('#email-5ecc7705-fc84-4d9b-a2b0-8cca9376ba98').type(testData.businessemail)
+    })
+    it('Finds all broken links', () => {
+        cy.get('a').each(link => {
+            if (link.prop('href'))
+                cy.request({
+                    url: link.prop('href'),
+                    failOnStatusCode: false
+                })
+            cy.log(link.prop('href'))
+        })
     })
 })
