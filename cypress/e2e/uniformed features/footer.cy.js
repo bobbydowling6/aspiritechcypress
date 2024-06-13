@@ -2,12 +2,11 @@ describe('Footer Menu Test', () => {
     beforeEach(() => {
       cy.visit('https://aspiritech.org')
       cy.title().should('eq', 'Aspiritech – Build it. Break it. Our team tests it. Software QA & Data Services')
-      cy.get('.elementor-element-a0fbbb9 > .elementor-widget-container > .elementor-heading-title')
-      .contains('Support Our Neurodiverse Team').should('be.visible')
+      cy.get('h3').contains('Support Our Neurodiverse Team').should('be.visible')
     })
     it('should click through the annual reports by year', () => {
         cy.scrollTo('bottom')
-        cy.get('.elementor-element-0fb3afa > .elementor-widget-wrap > .elementor-element > .elementor-widget-container > p').contains('Aspiritech, NFP').should('be.visible')
+        cy.get('div').contains('Aspiritech, NFP').should('be.visible')
         cy.contains('a', '2015').click()
         cy.title().should('eq', 'Aspiritech 2015 Annual Report by Aspiritech - Issuu')
         cy.url().should('include', 'annualreport2015')
@@ -44,7 +43,7 @@ describe('Footer Menu Test', () => {
     it('should click through the rest of the footer links', () => {
         cy.scrollTo('bottom')
         cy.get('.elementor-element-f5e176b > .elementor-widget-container > :nth-child(1) > a').contains('Sitemap').click()
-        cy.get('.elementor-4274 > .elementor-section > .elementor-container > .elementor-column > .elementor-widget-wrap').contains('404').should('be.visible')
+        cy.get('h1').contains('404').should('be.visible')
         cy.title().should('eq', 'Page not found – Aspiritech')
         cy.url().should('include', 'sitemap_index.xml')
         cy.scrollTo('bottom')

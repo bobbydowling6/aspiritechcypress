@@ -2,11 +2,11 @@ describe('template spec', () => {
     beforeEach(() => {
         cy.visit('https://aspiritech.org/services/faqs/')
         cy.title().should('eq', 'Frequently Asked Questions (FAQs) – Aspiritech')
-        cy.get('.elementor-element-5451715 > .elementor-container > .elementor-column > .elementor-widget-wrap > .elementor-element > .elementor-widget-container > .elementor-heading-title').contains('Frequently Asked Questions (FAQs)').should('be.visible')
+        cy.get('h1').contains('Frequently Asked Questions (FAQs)').should('be.visible')
         cy.url().should('include', 'faqs')
     })
     it('passes', () => {
-        cy.get('.elementor-element-7d7e210 > .elementor-widget-container > .elementor-heading-title').contains('General Questions & Answers').should('be.visible')
+        cy.get('h2').contains('General Questions & Answers').should('be.visible')
         cy.get('#elementor-tab-title-4831 > .elementor-accordion-title').contains('Will using Aspiritech take longer than outsourcing to traditional vendors?').should('be.visible')
         cy.get('#elementor-tab-content-4831 > p > span').should('be.visible')
         cy.get('#elementor-tab-title-4832 > .elementor-accordion-title').click()
@@ -22,7 +22,7 @@ describe('template spec', () => {
         cy.get('#elementor-tab-title-4837 > .elementor-accordion-title').click()
         cy.get('#elementor-tab-content-4837 > p > span').should('be.visible')
 
-        cy.get('.elementor-element-0bb974e > .elementor-widget-container > .elementor-heading-title').contains('SQA FAQs').should('be.visible')
+        cy.get('h2').contains('SQA FAQs').should('be.visible')
         cy.get('#elementor-tab-title-1451 > .elementor-accordion-title').contains('What is SQA?').should('be.visible')
         cy.get('#elementor-tab-content-1451 > p > span').should('be.visible')
         cy.get('#elementor-tab-title-1452 > .elementor-accordion-title').click()
@@ -38,7 +38,7 @@ describe('template spec', () => {
         cy.get('#elementor-tab-title-1457 > .elementor-accordion-title').click()
         cy.get('#elementor-tab-content-1457 > p > span').should('be.visible')
 
-        cy.get('.elementor-element-91fa2d9 > .elementor-widget-container > .elementor-heading-title').contains('Accessibility FAQs').should('be.visible')
+        cy.get('h2').contains('Accessibility FAQs').should('be.visible')
         cy.get('#elementor-tab-title-2551 > .elementor-accordion-title').contains('What is accessibility?').should('be.visible')
         cy.get('#elementor-tab-content-2551 > p').should('be.visible')
         cy.get('#elementor-tab-title-2552 > .elementor-accordion-title').click()
