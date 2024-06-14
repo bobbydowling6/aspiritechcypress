@@ -2,7 +2,7 @@ describe('template spec', () => {
     beforeEach(() => {
         cy.visit('https://aspiritech.org/events/')
         cy.title().should('eq', 'Events – Aspiritech')
-        cy.get('.elementor-element-a6b6080 > .elementor-widget-container > .elementor-heading-title').contains('Aspiritech Events').should('be.visible')
+        cy.get('h1').contains('Aspiritech Events').should('be.visible')
             })
     it('passes', () => {
         cy.get('.tribe-events-c-events-bar__search-button').click()
