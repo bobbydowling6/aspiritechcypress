@@ -1,6 +1,10 @@
+import Url from "../../support/PageObjects/url"
+import Footer from "../../support/PageObjects/footer"
 describe('Footer Menu Test', () => {
+    let url = new Url()
+    let footer = new Footer
     beforeEach(() => {
-      cy.visit('https://aspiritech.org')
+      url.homePage()
       cy.title().should('eq', 'Aspiritech – Build it. Break it. Our team tests it. Software QA & Data Services')
       cy.get('h3').contains('Support Our Neurodiverse Team').should('be.visible')
     })
