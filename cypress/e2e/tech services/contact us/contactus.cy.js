@@ -45,6 +45,10 @@ describe('template spec', () => {
         cy.get(':nth-child(1) > a > .elementor-icon-list-text').contains('939 Chicago Ave, Evanston, IL 60202 USA').should('be.visible').click()
         cy.go('back')
         cy.get(':nth-child(2) > a > .elementor-icon-list-text').contains('312-945-TEST (8378)').should('be.visible')
+        // cy.window().its('navigator').invoke('registerProtocolHandler', 'tel', '/tel/%s').wait(1000, {log: false})// for demo purposes
+        // cy.get(':nth-child(2) > a > .elementor-icon-list-text').click()
+        // cy.window().its('navigator.href').should('equal', 'tel:+3129458378')
+        // cy.contains('a#call', '+1 312-945-TEST (8378)')
         cy.section('Social Media Icons')
         cy.get('.elementor-element-4ab7852 > .elementor-widget-container > .elementor-icon-wrapper').click()
         cy.title().should('eq', 'Aspiritech | LinkedIn')
