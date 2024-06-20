@@ -1,7 +1,11 @@
+import Url from "../../../support/PageObjects/url"
+import Brokenlinks from "../../../support/PageObjects/brokenlinks"
 describe('template spec', () => {
     let testData = require("../../../fixtures/hsforms.json")
+    let url = new Url()
+    let brokenLinks = new Brokenlinks()
     beforeEach(() => {
-        cy.visit('https://aspiritech.org/services/quality-assurance/')
+        url.sqaPage()
         cy.title().should('eq', 'Software Quality Assurance – Aspiritech')
         cy.get('h1').contains('Software Quality Assurance').should('be.visible')
         cy.url().should('include', 'quality-assurance')
@@ -35,14 +39,5 @@ describe('template spec', () => {
         // cy.get('#company-5ecc7705-fc84-4d9b-a2b0-8cca9376ba98').type(testData.companyname)
         // cy.get('#email-5ecc7705-fc84-4d9b-a2b0-8cca9376ba98').type(testData.businessemail)
     })
-    it('Finds all broken links', () => {
-        cy.get('a').each(link => {
-            if (link.prop('href'))
-                cy.request({
-                    url: link.prop('href'),
-                    failOnStatusCode: false
-                })
-            cy.log(link.prop('href'))
-        })
-    })
+    brokenLinks.option1()
 })
