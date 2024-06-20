@@ -1,6 +1,10 @@
+import Url from "../../../support/PageObjects/url"
+import Brokenlinks from "../../../support/PageObjects/brokenlinks"
 describe('template spec', () => {
+    let url = new Url()
+    let brokenLinks = new Brokenlinks()
     beforeEach(() => {
-        cy.visit('https://aspiritech.org/contact-us/')
+        url.contactusPage()
         cy.title().should('eq', 'Contact Us – Aspiritech')
         cy.get('span.elementor-heading-title').contains('Contact us').should('be.visible')
     })
@@ -30,12 +34,7 @@ describe('template spec', () => {
         cy.go('back')
         cy.section('Download Capabilities Statement')
         cy.get('div > p').contains('Download Capabilities Statement').should('be.visible')
-        cy.request('https://aspiritech.org/wp-content/uploads/2024/02/Aspiritech-Capabilities-Overview-1.pdf')
-            .then((response) => {
-                expect(response.headers['content-type']).to.include('application/pdf')
-                // Handle the response if needed
-                // For example, you can check the status code or perform assertions
-            })
+        url.capabilitiesStatement()
         cy.get('a.elementor-button').contains('Download now!').click()
         cy.title('eq', 'Aspiritech Capabilities Overview')
         cy.url().should('include', 'Aspiritech-Capabilities-Overview-1.pdf')
@@ -63,14 +62,5 @@ describe('template spec', () => {
         // cy.url().should('include', 'aspiritech')
         // cy.go('back')
         })
-        it('Finds all broken links', () => {
-            cy.get('a').each(link => {
-                if (link.prop('href'))
-                    cy.request({
-                        url: link.prop('href'),
-                        failOnStatusCode: false
-                    })
-                cy.log(link.prop('href'))
-            })
-        })
+        brokenLinks.option1()
     })

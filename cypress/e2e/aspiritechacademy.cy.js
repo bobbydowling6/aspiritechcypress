@@ -1,15 +1,19 @@
+import Url from "../support/PageObjects/url"
+import Brokenlinks from "../support/PageObjects/brokenlinks"
 describe('template spec', () => {
+    let url = new Url()
+    let brokenLinks = new Brokenlinks()
     beforeEach(() => {
-        cy.visit('https://aspiritech.org/services/aspiritech-academy/')
+        url.aspiritechAcademy()
         cy.title().should('eq', 'Aspiritech Academy – Aspiritech')
         cy.get('h1').contains('Aspiritech Academy').should('be.visible')
         })
     it('passes', () => {
-        cy.get('[href="https://us.mitsubishielectric.com/en/sustainability/greater-community/meaf-top/index.html"]').contains('MEAF').click()
+        url.mitsubishiLink()
         cy.title().should('eq', 'Mitsubishi Electric America Foundation | Greater Community | Sustainability | MITSUBISHI ELECTRIC UNITED STATES')
         cy.url().should('include', 'index')
         cy.go('back')
-        cy.get('[href="https://haape.org/"]').contains('HAAPE').click()
+        url.haapeLink()
         cy.title().should('eq', 'HAAPE FOUNDATION')
         cy.url().should('eq', 'https://haape.org/')
         cy.go('back')
@@ -17,17 +21,8 @@ describe('template spec', () => {
         cy.get('h5 > strong').contains('Participants will be provided with:').should('be.visible')
         cy.get('h3').contains('Program Details').should('be.visible')
         cy.get('h2').contains("Don't Miss Out").should('be.visible')
-        cy.get('.elementor-heading-title > a').contains('Sign up for Aspiritech Academy program updates and enrollment news').click()
-        cy.get('.elementor-button').contains('Sign Up Now').click()
+        cy.get('a').contains('Sign up for Aspiritech Academy program updates and enrollment news').click()
+        cy.get('a.elementor-button').contains('Sign Up Now').click()
         })
-        // it('Finds all broken links', () => {
-        //     cy.get('a').each(link => {
-        //         if (link.prop('href'))
-        //             cy.request({
-        //                 url: link.prop('href'),
-        //                 failOnStatusCode: false
-        //             })
-        //         cy.log(link.prop('href'))
-        //      })
-        // })
+        brokenLinks.option1()
     })

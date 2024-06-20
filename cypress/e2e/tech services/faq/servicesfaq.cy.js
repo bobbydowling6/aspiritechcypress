@@ -1,6 +1,10 @@
+import Url from "../../../support/PageObjects/url"
+import Brokenlinks from "../../../support/PageObjects/brokenlinks"
 describe('template spec', () => {
+    let url = new Url()
+    let brokenLinks = new Brokenlinks()
     beforeEach(() => {
-        cy.visit('https://aspiritech.org/services/faqs/')
+        url.faqsPage()
         cy.title().should('eq', 'Frequently Asked Questions (FAQs) – Aspiritech')
         cy.get('h1').contains('Frequently Asked Questions (FAQs)').should('be.visible')
         cy.url().should('include', 'faqs')
@@ -47,14 +51,5 @@ describe('template spec', () => {
         cy.get('#elementor-tab-content-2553').should('be.visible')
 
     })
-    it('Finds all broken links', () => {
-        cy.get('a').each(link => {
-            if (link.prop('href'))
-                cy.request({
-                    url: link.prop('href'),
-                    failOnStatusCode: false
-                })
-            cy.log(link.prop('href'))
-        })
-    })
+    brokenLinks.option1()
 })

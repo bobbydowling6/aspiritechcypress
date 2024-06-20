@@ -1,6 +1,10 @@
+import Url from "../../../support/PageObjects/url"
+import Brokenlinks from "../../../support/PageObjects/brokenlinks"
 describe('template spec', () => {
+    let url = new Url()
+    let brokenLinks = new Brokenlinks()
     beforeEach(() => {
-        cy.visit('https://aspiritech.org/services/data-services/')
+        url.dataservicesPage()
         cy.title().should('eq', 'Data Services: Data Annotation, Data Labeling, and Data Validation. – Aspiritech')
         cy.get('h1').contains('Data Services: Data Annotation, Data Labeling, and Data Validation.').should('be.visible')
     })
@@ -9,7 +13,7 @@ describe('template spec', () => {
         cy.get('span.elementor-heading-title').contains('Contact us').should('be.visible')
         cy.url().should('include', 'contact-us')
         cy.go('back')
-        cy.get('.yellow').contains('Book your discovery call now').click()
+        cy.get('a.yellow').contains('Book your discovery call now').click()
         cy.get('span.elementor-heading-title').contains('Contact us').should('be.visible')
         cy.url().should('include', 'contact-us')
         cy.go('back')
@@ -29,19 +33,10 @@ describe('template spec', () => {
         cy.get('h1').contains('JP Morgan Chase QA & Product Excellence Case Study').should('be.visible')
         cy.url().should('include', 'jp-morgan-chase')
         cy.go('back')
-        cy.get('.yellow').contains('We can’t wait to hear from you!').click()
+        cy.get('a.yellow').contains('We can’t wait to hear from you!').click()
         cy.get('span.elementor-heading-title').contains('Contact us').should('be.visible')
         cy.url().should('include', 'contact-us')
         cy.go('back')
         })
-        it('Finds all broken links', () => {
-            cy.get('a').each(link => {
-                if (link.prop('href'))
-                    cy.request({
-                        url: link.prop('href'),
-                        failOnStatusCode: false
-                    })
-                cy.log(link.prop('href'))
-            })
-        })
+        brokenLinks.option1()
     })

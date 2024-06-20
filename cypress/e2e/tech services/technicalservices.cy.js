@@ -1,40 +1,48 @@
+import Url from "../../support/PageObjects/url"
+import Brokenlinks from "../../support/PageObjects/brokenlinks"
 describe('template spec', () => {
+    let url = new Url()
+    let brokenLinks = new Brokenlinks()
     beforeEach(() => {
-        cy.visit('https://aspiritech.org/services/')
+        url.servicesPage()
         cy.title().should('eq', 'Services – Aspiritech')
         cy.get('h2').contains('Services').should('be.visible')
         cy.url().should('include', 'services')
     })
     it('passes', () => {
-        cy.get('.elementor-element-3132c8b > .elementor-widget-container > .elementor-button-wrapper > .elementor-button').click()
+        cy.get('a.elementor-button').contains('Find Out More!').click()
         cy.get('span').contains('Contact us').should('be.visible')
         cy.url().should('include', 'contact-us')
         cy.go('back')
         cy.get('h2').contains('Quality Assurance, Accessibility, & Data Services').should('be.visible')
-        cy.get('.elementor-element-6a46db7 > .elementor-widget-container > :nth-child(3) > a').click()
-        cy.get('.elementor-element-68f10f8 > .elementor-container > .elementor-column > .elementor-widget-wrap').contains('Contact us').should('be.visible')
+        cy.get('a').contains('contact us').click()
+        cy.get('span').contains('Contact us').should('be.visible')
         cy.url().should('include', 'contact-us')
         cy.go('back')
-        cy.get('.elementor-element-35244bf4 > .elementor-widget-wrap').contains('Quality Assurance').click()
+        cy.get('h2').contains('Capabilities').should('be.visible')
+        cy.get('span.elementor-button-content-wrapper').contains('Quality Assurance').click()
         cy.get('h1').contains('Software Quality Assurance').should('be.visible')
         cy.url().should('include', 'quality-assurance')
         cy.go('back')
-        cy.get('.elementor-element-d665472 > .elementor-widget-wrap').contains('Audio Testing').click()
+        cy.get('span.elementor-button-content-wrapper').contains('Audio Testing').click()
         cy.get('h1').contains('Audio & Hardware Testing: Speakers, Headphones, & Connectivity').should('be.visible')
         cy.url().should('include', 'audio-testing')
         cy.go('back')
-        cy.get('.elementor-element-dfa4b52 > .elementor-widget-wrap').contains('Accessibility').click()
+        cy.get('span.elementor-button-content-wrapper').contains('Accessibility').click()
         cy.get('h1').contains('Accessibility Testing').should('be.visible')
         cy.url().should('include', 'accessibility')
         cy.go('back')
-        cy.get('.elementor-element-3c076282 > .elementor-widget-wrap').contains('Data Services').click()
+        cy.get('span.elementor-button-content-wrapper').contains('Data Services').click()
         cy.get('h1').contains('Data Services').should('be.visible')
         cy.url().should('include', 'data-services')
         cy.go('back')
-        cy.get('h1').contains('Services').should('be.visible')
-       
+        cy.get('h2').contains('Technical Services').should('be.visible')
+        cy.get('div.elementor-widget-wrap').each(() => {'Manual and Automated Testing', 
+        'Software and Hardware Testing', 'Data Integrity and Migration', 
+        'Accessibility & ADA Compliance', 'UX/UI, Responsive, & Device Testing', 
+        'Training Academy'}).should('be.visible')
           cy.get('h2').contains('QA & Software Testing Services').should('be.visible')
-          cy.get('.elementor-element-c790fc4 > :nth-child(1) > .elementor-col-100 > :nth-child(1)').each(() => {'Functional Testing',
+          cy.get('div.elementor-widget-wrap').each(() => {'Functional Testing',
           'Mobile App Testing',
           'Automation & Automated Testing',
           'Accessibility Testing (Section 508 and WCAG compliance)',
@@ -95,20 +103,10 @@ describe('template spec', () => {
         cy.get('h1').contains('Zebra Hardware QA & Product Excellence Case Study').should('be.visible')
         cy.url().should('include', 'zebra-case-study')
         cy.go('back')
-        cy.get('.elementor-element-39c6fdf > .elementor-widget-container > p').click()
+        cy.get('a.yellow').click()
         cy.get('span.elementor-heading-title').contains('Contact us').should('be.visible')
         cy.url().should('include', 'contact-us')
         cy.go('back')
     })
-    it('Finds all broken links', () => {
-        cy.get('a').each(link => {
-            if (link.prop('href'))
-                cy.request({
-                    url: link.prop('href'),
-                    failOnStatusCode: false
-                })
-            cy.log(link.prop('href'))
-        })
-    })
-
+    brokenLinks.option1()
 })

@@ -1,16 +1,26 @@
+import Url from "../../../support/PageObjects/url"
+import Brokenlinks from "../../../support/PageObjects/brokenlinks"
 describe('template spec', () => {
+    let url = new Url()
+    let brokenLinks = new Brokenlinks()
     beforeEach(() => {
-        cy.visit('https://aspiritech.org/services/quality-assurance/')
+        url.sqaPage()
         cy.title().should('eq', 'Software Quality Assurance – Aspiritech')
         cy.get('h1').contains('Software Quality Assurance').should('be.visible')
         cy.url().should('include', 'quality-assurance')
     })
     it('passes', () => {
-        cy.get('.elementor-widget-container > .yellow').contains('Book your discovery call now').click()
-        cy.get('.elementor-element-68f10f8 > .elementor-container > .elementor-column > .elementor-widget-wrap').contains('Contact us').should('be.visible')
+        cy.get('a.yellow').contains('Book your discovery call now').click()
+        cy.get('span.elementor-heading-title').contains('Contact us').should('be.visible')
         cy.url().should('include', 'contact-us')
         cy.go('back')
-        cy.get('.elementor-element-bdb343c > .elementor-widget-container > .elementor-heading-title > a').contains('View all case studies').click()
+        cy.get('h3').contains('Onshore SQA Testing').click({force: true})
+        cy.get('h1').contains('Onshore Software Quality Assurance Testing').should('be.visible')
+        cy.title().should('eq', 'Onshore Software Quality Assurance Testing – Aspiritech')
+        cy.url().should('include', 'quality-assurance/onshore-software-quality-assurance-testing/')
+        cy.go('back')
+        url.onShore()
+        cy.get('div.elementor-widget-container').contains('View all case studies').click()
         cy.get('h1').contains('Case Studies').should('be.visible')
         cy.url().should('include', 'case-studies')
         cy.go('back')
@@ -31,14 +41,5 @@ describe('template spec', () => {
         cy.url().should('include', 'contact-us')
         cy.go('back')
     })
-    it('Finds all broken links', () => {
-        cy.get('a').each(link => {
-            if (link.prop('href'))
-                cy.request({
-                    url: link.prop('href'),
-                    failOnStatusCode: false
-                })
-            cy.log(link.prop('href'))
-        })
-    })
+    //brokenLinks.option1()
 })
