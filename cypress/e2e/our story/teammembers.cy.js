@@ -1,6 +1,10 @@
+import Url from "../../support/PageObjects/url"
+import Brokenlinks from "../../support/PageObjects/brokenlinks"
 describe('template spec', () => {
+    let url = new Url()
+    let brokenLinks = new Brokenlinks()
     beforeEach(() => {
-        cy.visit('https://aspiritech.org/services/team-members/')
+        url.teamMembers()
         cy.title().should('eq', 'Team Members – Aspiritech')
         cy.get('h1').contains('Team Members').should('be.visible')
         })
@@ -13,14 +17,5 @@ describe('template spec', () => {
         cy.get('h1').contains('Careers').should('be.visible')   
         cy.go('back')
         })
-        it('Finds all broken links', () => {
-            cy.get('a').each(link => {
-                if (link.prop('href'))
-                    cy.request({
-                        url: link.prop('href'),
-                        failOnStatusCode: false
-                    })
-                cy.log(link.prop('href'))
-             })
-        })
+        brokenLinks.option1()
     })

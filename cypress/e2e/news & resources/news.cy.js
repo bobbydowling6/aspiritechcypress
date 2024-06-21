@@ -1,30 +1,34 @@
+import Url from "../../support/PageObjects/url"
+import Brokenlinks from "../../support/PageObjects/brokenlinks"
 describe('template spec', () => {
+    let url = new Url()
+    let brokenLinks = new Brokenlinks()
     beforeEach(() => {
-        cy.visit('https://aspiritech.org/category/news/')
+        url.newsPage()
         cy.title().should('eq', 'News – Aspiritech')
         cy.get('h1').contains('News').should('be.visible')
             })
     it('passes', () => {
         cy.section('Selecting the First 2 Articles')
         cy.get('h2').contains('Recent Posts').should('be.visible')
-        cy.get('.elementor-post__title').eq(0).contains('a').should('have.attr', 'href', 'https://aspiritech.org/featured/help-us-build-a-virtual-cookbook/').click()
+        cy.get('h3.elementor-post__title').eq(0).contains('a').should('have.attr', 'href', 'https://aspiritech.org/featured/help-us-build-a-virtual-cookbook/').click()
         cy.go('back')
-        cy.get('.elementor-post__title').eq(1).contains('a').should('have.attr', 'href', 'https://aspiritech.org/news/get-ready-for-the-aspiritech-magic-music-extravaganza/').click()
+        cy.get('h3.elementor-post__title').eq(1).contains('a').should('have.attr', 'href', 'https://aspiritech.org/news/get-ready-for-the-aspiritech-magic-music-extravaganza/').click()
         cy.go('back')
         cy.section('Page Numbers')
-        cy.get('.elementor-element-19068368 > .elementor-widget-container > .elementor-pagination > .current').url().should('include', 'news')
+        cy.get('nav.elementor-pagination').url().should('include', 'news')
         cy.get('a.page-numbers').should('have.attr', 'href', 'https://aspiritech.org/category/news/page/2/').contains('2').click()
         cy.title().should('eq', 'News – Page 2 – Aspiritech')
-        cy.get('.current').url().should('include', '2')
+        cy.get('nav.elementor-pagination').url().should('include', '2')
         cy.get('a.page-numbers').should('have.attr', 'href', 'https://aspiritech.org/category/news/').contains('3').click()
         cy.title().should('eq', 'News – Page 3 – Aspiritech')
-        cy.get('.current').url().should('include', '3')
+        cy.get('nav.elementor-pagination').url().should('include', '3')
         cy.get('a.page-numbers').should('have.attr', 'href', 'https://aspiritech.org/category/news/').contains('4').click()
         cy.title().should('eq', 'News – Page 4 – Aspiritech')
-        cy.get('.current').url().should('include', '4')
+        cy.get('nav.elementor-pagination').url().should('include', '4')
         cy.get('a.page-numbers').should('have.attr', 'href', 'https://aspiritech.org/category/news/').contains('5').click()
         cy.title().should('eq', 'News – Page 5 – Aspiritech')
-        cy.get('.current').url().should('include', '5')
+        cy.get('nav.elementor-pagination').url().should('include', '5')
 
         cy.section('More Topics & Categories')
         cy.get('h2').contains('More Topics & Categories').should('be.visible')
@@ -52,14 +56,5 @@ describe('template spec', () => {
         cy.title().should('eq', 'Neurodiversity Resource Library – Aspiritech')
         cy.url().should('include', 'neurodiversity-resource-library')
         })
-        it('Finds all broken links', () => {
-            cy.get('a').each(link => {
-                if (link.prop('href'))
-                    cy.request({
-                        url: link.prop('href'),
-                        failOnStatusCode: false
-                    })
-                cy.log(link.prop('href'))
-            })
-        })
+        brokenLinks.option1()
     })

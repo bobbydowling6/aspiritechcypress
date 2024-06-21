@@ -1,16 +1,20 @@
+import Url from "../../support/PageObjects/url"
+import Brokenlinks from "../../support/PageObjects/brokenlinks"
 describe('template spec', () => {
+    let url = new Url()
+    let brokenLinks = new Brokenlinks()
     beforeEach(() => {
-        cy.visit('https://aspiritech.org/featured/about-the-stepping-up-out-suo-program/')
+        url.suoprogramPage()
         cy.title().should('eq', 'About the Stepping Up & Out (SUO) Program – Aspiritech')
         cy.get('h1').contains('About the Stepping Up & Out (SUO) Program').should('be.visible')
         })
     it('passes', () => {
         cy.get('h3').contains('Team photos from our SUO events').should('be.visible')
-        cy.get('[href="https://aspiritech.org/wp-content/uploads/2022/11/SUO-stepping-up-out-team-photo02-martial-arts.jpg"] > .elementor-gallery-item__content').click()
+        url.photo1Url()
         cy.get('.dialog-close-button > .eicon-close').click()
-        cy.get('[href="https://aspiritech.org/wp-content/uploads/2022/11/SUO-stepping-up-out-team-photo35-PacMan.jpg"] > .elementor-gallery-item__content').click()
+        url.photo2Url()
         cy.get('.dialog-close-button > .eicon-close').click()
-        cy.get('[href="https://aspiritech.org/wp-content/uploads/2022/11/SUO-stepping-up-out-team-photo36-O-Neils-Wells-Feb-21-2020.jpg"] > .elementor-gallery-item__content')
+        url.photo3Url()
         cy.get('.dialog-close-button > .eicon-close').click()
         cy.get('h3').contains('Benefits and Activities of the SUO Program').should('be.visible')
         cy.get('h3').contains('To Participate in Aspiritech’s Stepping Up & Out').should('be.visible')
@@ -36,14 +40,5 @@ describe('template spec', () => {
         cy.url().should('include', 'about-us')
         cy.go('back')
     })
-        it('Finds all broken links', () => {
-            cy.get('a').each(link => {
-                if (link.prop('href'))
-                    cy.request({
-                        url: link.prop('href'),
-                        failOnStatusCode: false
-                    })
-                cy.log(link.prop('href'))
-            })
-        })
+        brokenLinks.option1()
     })

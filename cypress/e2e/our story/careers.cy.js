@@ -1,6 +1,10 @@
+import Url from "../../support/PageObjects/url"
+import Brokenlinks from "../../support/PageObjects/brokenlinks"
 describe('template spec', () => {
+    let url = new Url()
+    let brokenLinks = new Brokenlinks()
     beforeEach(() => {
-        cy.visit('https://aspiritech.org/services/careers/')
+        url.careersPage()
         cy.title().should('eq', 'Careers – Aspiritech')
         cy.get('h1').contains('Careers').should('be.visible')   
         })
@@ -8,8 +12,8 @@ describe('template spec', () => {
         cy.get('h2').contains('Employment opportunities at Aspiritech').should('be.visible')
         cy.get('a.elementor-button').contains('Apply now').click()
         cy.title().should('eq', 'Aspiritech NFP - Job Opportunities')
-        cy.url().should('include', 'Aspiritech-NFP')
-        cy.get('#LayoutLogoName').contains('Aspiritech NFP').should('be.visible')
+        cy.url().should('include', 'jobs')
+        cy.get('h2').contains('Aspiritech NFP').should('be.visible')
         cy.go('back')
         cy.get('#hs-form-iframe-0')
         cy.get('h2').contains('Aspiritech Careers: FAQ').should('be.visible')
@@ -23,7 +27,7 @@ describe('template spec', () => {
         cy.get('#elementor-tab-title-2538 > .elementor-accordion-title').click()
         cy.get('h2 > span').contains('benefits').should('be.visible')
         cy.get('h2').contains('Social Programs').should('be.visible')
-        cy.get('[href="mailto:SUO@aspiritech.org"] > span')
+        url.suoEmail()
         cy.get('p > :nth-child(3) > a').contains('SUO page of our website').click()
         cy.title().should('eq', 'About the Stepping Up & Out (SUO) Program – Aspiritech')
         cy.url().should('include', 'about-the-stepping-up-out-suo-program')
@@ -35,14 +39,5 @@ describe('template spec', () => {
         cy.get('h1').contains('Team Members').should('be.visible')
         cy.go('back')
         })
-        it('Finds all broken links', () => {
-            cy.get('a').each(link => {
-                if (link.prop('href'))
-                    cy.request({
-                        url: link.prop('href'),
-                        failOnStatusCode: false
-                    })
-                cy.log(link.prop('href'))
-            })
-        })
+        brokenLinks.option1()
     })

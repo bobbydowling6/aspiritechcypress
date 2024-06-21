@@ -1,28 +1,23 @@
+import Url from "../../support/PageObjects/url"
+import Brokenlinks from "../../support/PageObjects/brokenlinks"
 describe('template spec', () => {
+    let url = new Url()
+    let brokenLinks = new Brokenlinks()
     beforeEach(() => {
-        cy.visit('https://aspiritech.org/neurodiversity-resources/')
+        url.neuroDiversityPage()
         cy.title().should('eq', 'Neurodiversity Resource Library – Aspiritech')
         cy.get('h1').contains('Neurodiversity Resource Library').should('be.visible')
         })
     it('passes', () => {
-        cy.get('.elementor-element-4447645 > .elementor-widget-container > .elementor-button-wrapper > .elementor-button').contains('Contact Us').click()
+        cy.get('div.elementor-element-4447645 > .elementor-widget-container > .elementor-button-wrapper > .elementor-button').contains('Contact Us').click()
         cy.title().should('eq', 'Contact Us – Aspiritech')
         cy.url().should('include', 'contact-us')
         cy.get('span').contains('Contact us').should('be.visible')
         cy.go('back')
         cy.get('a').contains('Focus on Self-Care').click()
         cy.go('back')
-        cy.get('.elementor-widget-posts .elementor-post__title, .elementor-widget-posts .elementor-post__title a').eq(0).contains('a').click()
+        cy.get('div.elementor-widget-posts .elementor-post__title, .elementor-widget-posts .elementor-post__title a').eq(0).contains('a').click()
         cy.go('back')
     })
-        it('Finds all broken links', () => {
-            cy.get('a').each(link => {
-                if (link.prop('href'))
-                    cy.request({
-                        url: link.prop('href'),
-                        failOnStatusCode: false
-                    })
-                cy.log(link.prop('href'))
-            })
-        })
+        brokenLinks.option1()
     })

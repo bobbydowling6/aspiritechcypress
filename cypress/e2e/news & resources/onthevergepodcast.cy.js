@@ -1,40 +1,44 @@
+import Url from "../../support/PageObjects/url"
+import Brokenlinks from "../../support/PageObjects/brokenlinks"
 describe('On the Verge Podcast Page', () => {
+    let url = new Url()
+    let brokenLinks = new Brokenlinks()
     beforeEach(() => {
-        cy.visit('https://aspiritech.org/services/on-the-verge-podcast/')
+        url.podcastPage()
         cy.title().should('eq', 'On the Verge Podcast – Aspiritech')
         cy.get('h2').contains('On the Verge: Conversations with the Neurodiversity Movement').should('be.visible')
     })
     it('The user gets directed to Spotify to listen to podcast', () => {
         cy.get('.elementor-element-ccee8e2 > .elementor-widget-container > .elementor-heading-title').contains('Latest Episodes').should('be.visible')
-        cy.get('.elementor-element-a3d3b51 > .elementor-widget-container > p > [href="https://open.spotify.com/show/3kNXJcIW8bEMDUCvQkDzgW"]').contains('Spotify').click()
+        url.spotifyUrl()
         cy.get('[data-testid="showTitle"]').contains('On the Verge').should('be.visible')
         cy.title().should('eq', 'On the Verge | Podcast on Spotify')
         cy.url().should('include', 'show')
         cy.go('back')
     })
     it('The user gets directed to Apple Podcasts to listen to podcast', () => {
-        cy.get('.elementor-element-a3d3b51 > .elementor-widget-container > p > [href="https://podcasts.apple.com/us/podcast/on-the-verge/id1741555211"]').contains('Apple').click()
+        url.appleUrl()
         cy.get('.product-header__title').contains('On the Verge').should('be.visible')
         cy.title().should('eq', 'On the Verge on Apple Podcasts')
         cy.url().should('include', 'podcast')
         cy.go('back')
     })
     it('The user gets directed to iHeart Radio to listen to podcast', () => {
-        cy.get('.elementor-element-a3d3b51 > .elementor-widget-container > p > [href="https://www.iheart.com/podcast/269-on-the-verge-168028584/"]').contains('iHeart').click()
+        url.iHeartUrl()
         cy.get('[data-test="podcast-profile-heading"]').contains('On the Verge').should('be.visible')
         cy.title().should('eq', 'On the Verge | iHeart')
         cy.url().should('include', 'podcast')
         cy.go('back')
     })
     it('The user gets directed to Amazon Music to listen to podcast', () => {
-        cy.get('.elementor-element-a3d3b51 > .elementor-widget-container > p > [href="https://music.amazon.com/podcasts/eb6c5bd0-9347-4a3d-9eb4-c0550bb3e7a7/on-the-verge"]').contains('Amazon Music').click()
+        url.amazonUrl()
         //cy.get('div.secondaryHeadline').contains('On the Verge').should('be.visible')
         cy.title().should('eq', 'On the Verge Podcast on Amazon Music')
         cy.url().should('include', 'podcasts')
         cy.go('back')
     })
     it('The user gets directed to YouTube to listen to podcast', () => {
-        cy.get('.elementor-element-a3d3b51 > .elementor-widget-container > p > [href="https://www.youtube.com/playlist?list=PLnfduKObZ7mohUnu-rks9meMdspbKUsgs"]').contains('YouTube').click()
+        url.youTubeUrl()
         cy.get('.metadata-wrapper > :nth-child(1) > #container > #text').contains('On the Verge').should('be.visible')
         cy.title().should('eq', 'On the Verge: Conversations with the Neurodiversity Movement - Presented by Aspiritech - YouTube')
         cy.url().should('include', 'playlist')
@@ -60,16 +64,6 @@ describe('On the Verge Podcast Page', () => {
         cy.get('h2 > span').contains('Episode Transcript').should('be.visible')
         cy.go('back')
     })
-    it('Finds all broken links', () => {
-        cy.get('a').each(link => {
-            if (link.prop('href'))
-                cy.request({
-                    url: link.prop('href'),
-                    failOnStatusCode: false
-                })
-            cy.log(link.prop('href'))
-        })
-    })
-
+    brokenLinks.option1()
 })
 
