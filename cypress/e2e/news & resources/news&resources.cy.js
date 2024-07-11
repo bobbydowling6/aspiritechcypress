@@ -11,9 +11,9 @@ describe('template spec', () => {
     it('passes', () => {
         cy.section('Selecting the First 2 Articles')
         cy.get('h2').contains('Recent Posts').should('be.visible')
-        cy.get('h3.elementor-post__title').eq(0).contains('a').should('have.attr', 'href', 'https://aspiritech.org/featured/how-galileos-story-sheds-light-on-neurodivergence-and-self-esteem/').click()
+        cy.get('h3.elementor-post__title').eq(0).contains('a').should('have.attr', 'href', 'https://aspiritech.org/featured/webinar-registration-unlock-your-organizations-data-with-ai-on-july-18/').click()
         cy.go('back')
-        cy.get('h3.elementor-post__title').eq(1).contains('a').should('have.attr', 'href', 'https://aspiritech.org/featured/on-the-verge-episode-3-autistic-representation-with-scott-steindorff/').click()
+        cy.get('h3.elementor-post__title').eq(1).contains('a').should('have.attr', 'href', 'https://aspiritech.org/featured/is-there-healing-in-traditional-medicine-for-adults-on-the-spectrum/').click()
         cy.go('back')
         cy.section('Page Numbers')
         cy.get('nav.elementor-pagination').url().should('include', 'aspiritech-news-resources')

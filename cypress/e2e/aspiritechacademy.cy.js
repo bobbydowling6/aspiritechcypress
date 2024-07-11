@@ -14,7 +14,7 @@ describe('template spec', () => {
         cy.url().should('include', 'index')
         cy.go('back')
         url.haapeLink()
-        cy.title().should('eq', 'HAAPE FOUNDATION')
+        cy.title().should('eq', 'HAAPE - Helping Adults with Autism Perform and Excel')
         cy.url().should('eq', 'https://haape.org/')
         cy.go('back')
         cy.get('#area-form').contains('Interested in enrolling in Aspiritech Academy?').should('be.visible')

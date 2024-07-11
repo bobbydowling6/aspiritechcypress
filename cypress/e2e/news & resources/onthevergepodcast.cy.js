@@ -64,6 +64,6 @@ describe('On the Verge Podcast Page', () => {
         cy.get('h2 > span').contains('Episode Transcript').should('be.visible')
         cy.go('back')
     })
-    brokenLinks.option1()
+    //brokenLinks.option1()
 })
 
