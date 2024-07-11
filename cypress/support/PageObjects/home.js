@@ -32,9 +32,9 @@ class Home
     getArticles()
     {
         return cy.get('.elementor-element-48e1f39').then(($article) => {
-            cy.wrap($article[0]).should('contain', 'Help Us Build a Virtual Cookbook')
-            cy.wrap($article[0]).should('contain', 'On the Verge Episode 2: Sensory Gated Art with Amanda Hebert Hughes')
-            cy.wrap($article[0]).should('contain', 'Mitsubishi Electric America Foundation Announces $2 Million in New Grants')
+            cy.wrap($article[0]).should('contain', 'Webinar Registration: Unlock Your Organization’s Data with AI on July 18')
+            cy.wrap($article[0]).should('contain', 'Is There Healing in Traditional Medicine for Adults on the Spectrum?')
+            cy.wrap($article[0]).should('contain', 'How Galileo’s Story Sheds Light on Neurodivergence and Self-Esteem')
           })
     }
 }
