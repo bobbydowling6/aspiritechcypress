@@ -1,6 +1,6 @@
 import Url from "../../support/PageObjects/url"
 import Brokenlinks from "../../support/PageObjects/brokenlinks"
-describe('template spec', () => {
+describe('Events Page', () => {
     let url = new Url()
     let brokenLinks = new Brokenlinks()
     beforeEach(() => {
@@ -8,7 +8,7 @@ describe('template spec', () => {
         cy.title().should('eq', 'Events – Aspiritech')
         cy.get('h1').contains('Aspiritech Events').should('be.visible')
             })
-    it('passes', () => {
+    it('Tests Events Page', () => {
         cy.get('button.tribe-events-c-events-bar__search-button').click()
         cy.get('#tribe-events-events-bar-keyword').type('Aspiritech Summer Picnic')
         cy.get('button.tribe-common-c-btn').contains('Find Events').click()

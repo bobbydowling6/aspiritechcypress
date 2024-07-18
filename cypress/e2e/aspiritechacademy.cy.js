@@ -1,6 +1,6 @@
 import Url from "../support/PageObjects/url"
 import Brokenlinks from "../support/PageObjects/brokenlinks"
-describe('template spec', () => {
+describe('Aspiritech Academy', () => {
     let url = new Url()
     let brokenLinks = new Brokenlinks()
     beforeEach(() => {
@@ -8,7 +8,7 @@ describe('template spec', () => {
         cy.title().should('eq', 'Aspiritech Academy – Aspiritech')
         cy.get('h1').contains('Aspiritech Academy').should('be.visible')
         })
-    it('passes', () => {
+    it('Tests Aspiritech Academy Page', () => {
         url.mitsubishiLink()
         cy.title().should('eq', 'Mitsubishi Electric America Foundation | Greater Community | Sustainability | MITSUBISHI ELECTRIC UNITED STATES')
         cy.url().should('include', 'index')

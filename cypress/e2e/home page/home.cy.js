@@ -1,6 +1,6 @@
 import Home from "../../support/PageObjects/home"
 import Url from "../../support/PageObjects/url"
-describe('template spec', () => {
+describe('Home page', () => {
   let home = new Home()
   let url = new Url()
   beforeEach(() => {
@@ -8,7 +8,7 @@ describe('template spec', () => {
     cy.title().should('eq', 'Aspiritech – Build it. Break it. Our team tests it. Software QA & Data Services')
     cy.get('h3').contains('Support Our Neurodiverse Team').should('be.visible')
   })
-  it('passes', () => {
+  it('Tests the home page', () => {
     cy.get('h2').contains('Quality Assurance, Accessibility, and Data Services').should('be.visible')
     cy.get('em').contains('Excellence powered by a neurodivergent team')
     cy.get('h2').contains('Our Services').should('be.visible')

@@ -1,6 +1,6 @@
 import Url from "../../../support/PageObjects/url"
 import Brokenlinks from "../../../support/PageObjects/brokenlinks"
-describe('template spec', () => {
+describe('Bose Case Study Page', () => {
     let testData = require("../../../fixtures/hsforms.json")
     let url = new Url()
     let brokenLinks = new Brokenlinks()

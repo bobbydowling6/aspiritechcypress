@@ -2,7 +2,7 @@ class Brokenlinks
 {
     option1()
     {
-        return it('Finds all broken links', () => {
+        return it('Finds and Detects all broken links', () => {
             cy.get('a').each(link => {
                 if (link.prop('href'))
                     cy.request({
