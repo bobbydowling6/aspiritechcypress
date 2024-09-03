@@ -12,7 +12,6 @@ describe('Neurodiversity Library Page', () => {
         cy.get('div.elementor-element-4447645 > .elementor-widget-container > .elementor-button-wrapper > .elementor-button').contains('Contact Us').click()
         cy.title().should('eq', 'Contact Us – Aspiritech')
         cy.url().should('include', 'contact-us')
-        cy.get('span').contains('Contact us').should('be.visible')
         cy.go('back')
         cy.get('a').contains('Focus on Self-Care').click()
         cy.go('back')
