@@ -11,9 +11,9 @@ describe('News & Resources Page', () => {
     it('passes', () => {
         cy.section('Selecting the First 2 Articles')
         cy.get('h2').contains('Recent Posts').should('be.visible')
-        cy.get('h3.elementor-post__title').eq(0).contains('a').should('have.attr', 'href', 'https://aspiritech.org/featured/respectful-change-a-fundamental-misunderstanding-about-autism/').click()
+        cy.get('h3.elementor-post__title').eq(0).contains('a').should('have.attr', 'href', 'https://aspiritech.org/featured/10-ways-businesses-can-leverage-data-ai-for-better-outcomes/').click()
         cy.go('back')
-        cy.get('h3.elementor-post__title').eq(1).contains('a').should('have.attr', 'href', 'https://aspiritech.org/featured/board-member-spotlight-brad-zelinger-founder-and-ceo-of-stride-autism-centers/').click()
+        cy.get('h3.elementor-post__title').eq(1).contains('a').should('have.attr', 'href', 'https://aspiritech.org/featured/respectful-change-a-fundamental-misunderstanding-about-autism/').click()
         cy.go('back')
         cy.section('Page Numbers')
         cy.get('nav.elementor-pagination').url().should('include', 'aspiritech-news-resources')
