@@ -38,6 +38,24 @@ https://github.com/bobbydowling6/aspiritechcypress
 
 **Git remote (origin):** https://github.com/bobbydowling6/aspiritechcypress.git
 
+## Clone this repository
+You can clone the project using HTTPS or SSH. Example commands:
+
+HTTPS:
+```bash
+git clone https://github.com/bobbydowling6/aspiritechcypress.git
+```
+
+SSH:
+```bash
+git clone git@github.com:bobbydowling6/aspiritechcypress.git
+```
+
+If you already have a local repository and want to set `origin` to this GitHub repo:
+```bash
+git remote set-url origin https://github.com/bobbydowling6/aspiritechcypress.git
+```
+
 ## Contributing
 Open issues or submit pull requests to improve tests or add new cases. If you add dependencies, update `package.json` and ensure CI still passes.
 
