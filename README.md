@@ -1,3 +1,48 @@
+# Aspiritech Cypress Test Suite
+
+A collection of Cypress end-to-end tests for the Aspiritech website.
+
+## Overview
+This repository holds automated UI tests written with Cypress. Tests are organized under `cypress/e2e/` and use supporting helpers in `cypress/support/` and `cypress/PageObjects/`.
+
+## Quick start
+Prerequisites:
+- Node.js 18+ and npm
+
+Install dependencies:
+```bash
+npm ci
+```
+
+Open Cypress (interactive):
+```bash
+npx cypress open
+```
+
+Run tests headless:
+```bash
+npx cypress run
+```
+
+## Project structure (high level)
+- `cypress/e2e/` — test specs organized by site area
+- `cypress/fixtures/` — test fixtures
+- `cypress/support/` — custom commands and page objects
+- `cypress/screenshots/` and `cypress/videos/` — test artifacts (ignored by `.gitignore`)
+
+## CI
+This repo includes a GitHub Actions workflow at `.github/workflows/ci.yml` that runs `npm ci` and `npm test` on pushes and pull requests to `main`.
+
+## Repository
+https://github.com/bobbydowling6/aspiritechcypress
+
+## Contributing
+Open issues or submit pull requests to improve tests or add new cases. If you add dependencies, update `package.json` and ensure CI still passes.
+
+## Notes
+- Large binaries should be tracked via Git LFS. Consider running `git lfs` setup if you plan to add big files.
+
+License: see repository settings for license information.
 # AspiritechCypress
 
 
