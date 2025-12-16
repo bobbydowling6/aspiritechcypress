@@ -36,6 +36,8 @@ This repo includes a GitHub Actions workflow at `.github/workflows/ci.yml` that 
 ## Repository
 https://github.com/bobbydowling6/aspiritechcypress
 
+**Git remote (origin):** https://github.com/bobbydowling6/aspiritechcypress.git
+
 ## Contributing
 Open issues or submit pull requests to improve tests or add new cases. If you add dependencies, update `package.json` and ensure CI still passes.
 
