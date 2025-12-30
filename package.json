@@ -4,17 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "cypress run",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "axe-core": "^4.9.0",
-    "cypress": "^15.7.1",
-    "cypress-axe": "^1.5.0",
-    "cypress-iframe": "^1.0.1"
-  },
-  "dependencies": {
-    "cypress-plugin-steps": "^1.1.1"
+    "cypress": "^15.8.1",
+    "cypress-axe": "^1.7.0",
+    "cypress-iframe": "^1.0.1",
+    "cypress-plugin-steps": "^1.2.1"
   }
 }
