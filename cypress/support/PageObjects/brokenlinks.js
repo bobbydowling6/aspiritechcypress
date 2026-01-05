@@ -2,7 +2,8 @@ class Brokenlinks
 {
     option1()
     {
-        return it('Finds and Detects all broken links', () => {
+        return it('Finds and Detects all broken links for option 1', () => {
+            cy.step('Verify the option 1 is working')
             cy.get('a').each(link => {
                 if (link.prop('href'))
                     cy.request({
@@ -15,9 +16,10 @@ class Brokenlinks
     }
     option2()
     {
-        return it('verify navigation across the pages', () => {
+        return it('Finds and Detects all broken links for option 2', () => {
             let brokenLinks = 0
             let activeLinks = 0
+            cy.step('Verify the option 2 is working')
             cy.get('a').each(($link, index) => {
                 const href = $link.attr('href')
                 if (href) {
